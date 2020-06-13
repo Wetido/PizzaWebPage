@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Zlóż zamówienie</title>
+</head>
+<body>
+    <form method="POST" th:action="@{/orders}" th:object="${order}">
+
+        <h1>Zamow przygotowane jedzenie</h1>
+
+        <!--obrazek-->
+
+        <a th:href="@{/design}" id="another">Przygotuj inna pizze</a>
+
+        <div th:if="${#fields.hasErrors()}">
+
+            <span class="validationError">
+                Złapałem error. Popraw się
+            </span>
+        </div>
+
+        <h3>Adres pod jaki ma zostać wysłane zamówienie</h3>
+        <label id="name">Imie i nazwiksko</label>
+        <input type="text" th:field="*{name}">
+        <span class="validationError"
+              th:if="${#fields.hasErrors('name')}"
+              th.errors="*{name}">Blad w imieniu i nazwisku</span>
+        <br/>
+
+        <label id="street">Ulica</label>
+        <input type="text" th:field="*{street}">
+        <span class="validationError"
+              th:if="${#fields.hasErrors('street')}"
+              th.errors="*{street}">Podaj poprawna ulice</span>
+        <br/>
+
+        <label id="zip">Kod pocztowy</label>
+        <input type="text" th:field="*{zip}">
+        <span class="validationError"
+              th:if="${#fields.hasErrors('zip')}"
+              th.errors="*{zip}">Podaj poprawny kod pocztowy</span>
+        <br/>
+
+        <h3>Platnosc</h3>
+        <label id="ccNumber">Numer karty kredytowej</label>
+        <input type="text" th:field="*{ccNumber}">
+        <span class="validationError"
+              th:if="${#fields.hasErrors('ccNumber')}"
+              th.errors="*{ccNumber}">Blad numeru karty kredytowej</span>
+        <br/>
+
+        <label id="ccExpiration">Data waznosci</label>
+        <input type="text" th:field="*{ccExpiration}">
+        <span class="validationError"
+              th:if="${#fields.hasErrors('ccExpiration')}"
+              th.errors="*{ccExpiration}">Podaj date waznosci w odpowienim formacie</span>
+        <br/>
+
+        <label id="ccCVV">Kod CVV</label>
+        <input type="text" th:field="*{ccCVV}">
+        <span class="validationError"
+              th:if="${#fields.hasErrors('ccCVV')}"
+              th.errors="*{ccCVV}">Podaj date waznosci w odpowienim formacie</span>
+        <br/>
+
+        <input type="submit" value="Złóż zamówienie">
+
+    </form>
+</body>
+</html>

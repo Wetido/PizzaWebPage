@@ -5,10 +5,13 @@ import jakub.pizzaweb.pizza.Ingredient.Type;
 import jakub.pizzaweb.pizza.Pizza;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,6 +45,17 @@ public class DesignPizzaController {
         model.addAttribute("design", new Pizza());
 
         return "design";
+    }
+
+    @PostMapping
+    public String processDesign(@Valid Pizza design, Errors errors){
+
+        if(errors.hasErrors()){
+            return "design";
+        }
+
+        log.info("Przetwarzanie projektu pizza: " + design);
+        return "redirect:/orders/current";
     }
 
     private List<Ingredient> filterByType( List<Ingredient> ingredients, Type type) {

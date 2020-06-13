@@ -1,7 +1,6 @@
 package jakub.pizzaweb.pizza;
 
 
-import lombok.RequiredArgsConstructor;
 
 
 public class Ingredient {
