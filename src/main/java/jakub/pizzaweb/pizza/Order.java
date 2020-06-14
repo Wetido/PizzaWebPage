@@ -5,8 +5,12 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
 
 public class Order {
+
+    private Long id;
+    private Date PlacedAt;
 
     @NotBlank(message="To pole jest obowiazkowe")
     private String name;
@@ -36,6 +40,33 @@ public class Order {
         this.ccNumber = ccNumber;
         this.ccExpiration = ccExpiration;
         this.ccCVV = ccCVV;
+    }
+
+    public Order(Long id, Date placedAt, String name, String street,  String zip,  String ccNumber,  String ccExpiration,  String ccCVV) {
+        this.id = id;
+        PlacedAt = placedAt;
+        this.name = name;
+        this.street = street;
+        this.zip = zip;
+        this.ccNumber = ccNumber;
+        this.ccExpiration = ccExpiration;
+        this.ccCVV = ccCVV;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getPlacedAt() {
+        return PlacedAt;
+    }
+
+    public void setPlacedAt(Date placedAt) {
+        PlacedAt = placedAt;
     }
 
     public Order(){}
