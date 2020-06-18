@@ -1,3 +1,4 @@
+/*
 package jakub.pizzaweb.pizza.data;
 
 import jakub.pizzaweb.pizza.Ingredient;
@@ -50,3 +51,4 @@ public class JdbcIngredientRepository implements IngredientRepository{
 
     }
 }
+*/

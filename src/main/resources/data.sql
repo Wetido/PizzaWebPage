@@ -1,21 +1,18 @@
-delete from Pizza_Order_Pizza;
-delete from Pizza_Ingrdients;
-delete from Pizza;
-delete from Pizza_Order;
 
-delete from Ingredient;
+/*
 
-insert into Ingredient (id, name, type)
-    values ('QQ','Kukurydza','WARZYWNE');
+insert into INGREDIENT (id, name, type)
+    values ('QQ','Kukurydza',0);
 
-insert into Ingredient (id, name, type)
-    values ('KU','Kurczak','MIESNE');
+insert into INGREDIENT (id, name, type)
+    values ('KU','Kurczak',1);
 
-insert into Ingredient (id, name, type)
-    values ('SZ','Szynka','MIESNE');
+insert into INGREDIENT (id, name, type)
+    values ('SZ','Szynka',1);
 
-insert into Ingredient (id, name, type)
-    values ('CZ','Czedar','SER');
+insert into INGREDIENT (id, name, type)
+    values ('CZ','Czedar',2);
 
-insert into Ingredient (id, name, type)
-    values ('PI','Pieczarki','INNE');
+insert into INGREDIENT (id, name, type)
+    values ('PI','Pieczarki',3);
+*/
