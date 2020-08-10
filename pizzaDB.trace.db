@@ -1,0 +1,16 @@
+2020-06-18 13:03:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, PLACED_AT TIMESTAMP, CCCVV VARCHAR(255), CC_EXPIRATION VARCHAR(255), CC_NUMBER VARCHAR(255), NAME VARCHAR(255), STREET VARCHAR(255), ZIP VARCHAR(255), PRIMARY KEY (ID))"; oczekiwano "identifier"
+Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, PLACED_AT TIMESTAMP, CCCVV VARCHAR(255), CC_EXPIRATION VARCHAR(255), CC_NUMBER VARCHAR(255), NAME VARCHAR(255), STREET VARCHAR(255), ZIP VARCHAR(255), PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, placed_at timestamp, cccvv varchar(255), cc_expiration varchar(255), cc_number varchar(255), name varchar(255), street varchar(255), zip varchar(255), primary key (id)) [42001-200]
+2020-06-18 13:03:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "ALTER TABLE ORDER_PIZZAS ADD CONSTRAINT FK7BY9C9U4XAU2BFIPCUO2TWX0D FOREIGN KEY (ORDER_ID) REFERENCES ORDER[*]"; oczekiwano "identifier"
+Syntax error in SQL statement "ALTER TABLE ORDER_PIZZAS ADD CONSTRAINT FK7BY9C9U4XAU2BFIPCUO2TWX0D FOREIGN KEY (ORDER_ID) REFERENCES ORDER[*]"; expected "identifier"; SQL statement:
+alter table order_pizzas add constraint FK7by9c9u4xau2bfipcuo2twx0d foreign key (order_id) references order [42001-200]
+2020-06-18 13:05:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, PLACED_AT TIMESTAMP, CCCVV VARCHAR(255), CC_EXPIRATION VARCHAR(255), CC_NUMBER VARCHAR(255), NAME VARCHAR(255), STREET VARCHAR(255), ZIP VARCHAR(255), PRIMARY KEY (ID))"; oczekiwano "identifier"
+Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, PLACED_AT TIMESTAMP, CCCVV VARCHAR(255), CC_EXPIRATION VARCHAR(255), CC_NUMBER VARCHAR(255), NAME VARCHAR(255), STREET VARCHAR(255), ZIP VARCHAR(255), PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, placed_at timestamp, cccvv varchar(255), cc_expiration varchar(255), cc_number varchar(255), name varchar(255), street varchar(255), zip varchar(255), primary key (id)) [42001-200]
+2020-06-18 13:05:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "ALTER TABLE ORDER_PIZZAS ADD CONSTRAINT FK7BY9C9U4XAU2BFIPCUO2TWX0D FOREIGN KEY (ORDER_ID) REFERENCES ORDER[*]"; oczekiwano "identifier"
+Syntax error in SQL statement "ALTER TABLE ORDER_PIZZAS ADD CONSTRAINT FK7BY9C9U4XAU2BFIPCUO2TWX0D FOREIGN KEY (ORDER_ID) REFERENCES ORDER[*]"; expected "identifier"; SQL statement:
+alter table order_pizzas add constraint FK7by9c9u4xau2bfipcuo2twx0d foreign key (order_id) references order [42001-200]

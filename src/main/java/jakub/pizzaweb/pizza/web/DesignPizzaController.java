@@ -67,7 +67,7 @@ public class DesignPizzaController {
     @PostMapping
     public String processDesign(@Valid Pizza design, Errors errors, @ModelAttribute Order order){
 
-/*        if(errors.hasErrors()){
+       /* if(errors.hasErrors()){
             return "design";
         }*/
 

@@ -25,7 +25,7 @@ public class Pizza {
     private Date createdAt;
 
     @ManyToMany(targetEntity = Ingredient.class)
-    @Size(min = 1, message = "Wybierz przynajmniej jeden skladnik")
+    //@Size(min = 1, message = "Wybierz przynajmniej jeden skladnik")
     private List<Ingredient> ingredients = new ArrayList<>();
 
 
