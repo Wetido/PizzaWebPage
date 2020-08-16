@@ -5,8 +5,14 @@ import jakub.pizzaweb.pizza.Ingredient.Type;
 import jakub.pizzaweb.pizza.Order;
 import jakub.pizzaweb.pizza.Pizza;
 import jakub.pizzaweb.pizza.data.IngredientRepository;
+import jakub.pizzaweb.pizza.data.OrderRepostiroy;
 import jakub.pizzaweb.pizza.data.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.hateoas.server.EntityLinks;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -17,71 +23,58 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Controller
-@RequestMapping("/design")
-@SessionAttributes("order")
+@RestController
+@RequestMapping(path="/design", produces="application/json")
+@CrossOrigin(origins="*")
 public class DesignPizzaController {
-
-    private final IngredientRepository ingredientRepository;
     private PizzaRepository pizzaRepository;
-
-    @ModelAttribute(name = "order")
-    public Order order(){
-
-        return new Order();
-    }
-
-    @ModelAttribute(name = "design")
-    public Pizza design(){
-
-        return new Pizza();
-    }
+    private IngredientRepository ingredientRepository;
+    private OrderRepostiroy orderRepostiroy;
 
     @Autowired
-    public DesignPizzaController(IngredientRepository ingredientRepository,
-                                 PizzaRepository pizzaRepository) {
-        this.ingredientRepository = ingredientRepository;
+    EntityLinks entityLinks;
+
+    public DesignPizzaController(PizzaRepository pizzaRepository, IngredientRepository ingredientRepository,
+                                 OrderRepostiroy orderRepostiroy) {
         this.pizzaRepository = pizzaRepository;
+        this.ingredientRepository = ingredientRepository;
+        this.orderRepostiroy = orderRepostiroy;
     }
 
-    @GetMapping
-    public String showDesignForm(Model model){
-
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredientRepository.findAll().forEach(ingredients::add);
-
-        Type[] types = Ingredient.Type.values();
-
-        for( Ingredient.Type type : types ){
-
-            model.addAttribute(type.toString().toLowerCase(),
-                    filterByType(ingredients, type));
-        }
-        //model.addAttribute("design", new Pizza());
-
-        return "design";
+    @GetMapping("/pizzas")
+    public Iterable<Pizza> recentPizzas() {
+        return pizzaRepository.findAll();
     }
 
-    @PostMapping
-    public String processDesign(@Valid Pizza design, Errors errors, @ModelAttribute Order order){
 
-       /* if(errors.hasErrors()){
-            return "design";
-        }*/
-
-
-        Pizza saved = pizzaRepository.save(design);
-        order.addDesign(saved);
-
-        return "redirect:/orders/current";
+    @GetMapping("/ingredients")
+    public Iterable<Ingredient> recentIngredients() {
+        return ingredientRepository.findAll();
     }
 
-    private List<Ingredient> filterByType( List<Ingredient> ingredients, Type type) {
-        return ingredients
-                .stream()
-                .filter(x -> x.getType().equals(type))
-                .collect(Collectors.toList());
+    @GetMapping("/orders")
+    public Iterable<Order> recentOrders() {
+        return orderRepostiroy.findAll();
     }
+
+    @PostMapping(consumes="application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Ingredient postTaco(@RequestBody Ingredient ingredient) {
+        return ingredientRepository.save(ingredient);
+    }
+
+
+  @GetMapping("recent/{id}")
+  public ResponseEntity<Pizza> tacoById(@PathVariable("id") Long id) {
+    Optional<Pizza> optTaco = pizzaRepository.findById(id);
+    if (optTaco.isPresent()) {
+      return new ResponseEntity<>(optTaco.get(), HttpStatus.OK);
+    }
+    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+  }
+
+
 }
